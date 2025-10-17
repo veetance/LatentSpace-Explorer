@@ -47,4 +47,53 @@ $(document).ready(function() {
             }, 600); // Match animation duration
         }
     });
+
+    const tagsContainer = $('#tags-container');
+    const tagsInputField = $('#tags-input-field');
+    const tagsInput = $('#tags-input');
+
+    let tags = [];
+
+    const pastelColors = [
+        'var(--pastel-blue)',
+        'var(--pastel-green)',
+        'var(--pastel-pink)',
+        'var(--pastel-yellow)',
+        'var(--pastel-purple)'
+    ];
+
+    function addTag(tag) {
+        if (tag && !tags.includes(tag)) {
+            tags.push(tag);
+            const chip = $('<div class="tag-chip"></div>');
+            const chipText = $('<p class="chip-text"></p>').text(tag);
+            chip.append(chipText);
+            chip.css('borderColor', pastelColors[tags.length % pastelColors.length]);
+            const removeChip = $('<span class="remove-chip">&times;</span>');
+            removeChip.on('click', function() {
+                const tagToRemove = $(this).siblings('.chip-text').text();
+                tags = tags.filter(t => t !== tagToRemove);
+                $(this).parent().remove();
+                updateHiddenInput();
+            });
+            chip.append(removeChip);
+            tagsContainer.append(chip);
+            updateHiddenInput();
+        }
+    }
+
+    function updateHiddenInput() {
+        tagsInput.val(tags.join(','));
+    }
+
+    tagsInputField.on('keyup', function(e) {
+        if (e.key === ',' || e.key === 'Enter') {
+            let tag = $(this).val().trim();
+            if (e.key === ',') {
+                tag = tag.slice(0, -1);
+            }
+            addTag(tag);
+            $(this).val('');
+        }
+    });
 });

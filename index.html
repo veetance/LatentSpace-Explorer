@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Latent Space Explorer</title>
-    <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/layout.css">
+    <link rel="stylesheet" href="/static/css/components.css">
     <!-- Google Fonts for Stalinist One -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,45 +25,62 @@
             
             <header class="header">
                 <h1>Latent Space Explorer</h1>
-                <p>AI-powered procedural Game generation engine</p>
+                <p>Procedural Latent Game generation engine</p>
             </header>
 
-            <div class="pannels-wrapper">
+            <div class="ctrl-body">
+                <div class="scroll-content">
+                    <div class="pannels-wrapper">
 
-                <div class="panel" title="Controls for spawning a new creation with the AI.">
-                    <form hx-post="/generate" hx-target="#generation-container" hx-swap="innerHTML" hx-indicator="#loading-spinner" class="form-group">
-                        <p class="description">Provide a set of comma-separated tags to define a concept. The AI will then attempt to spawn a unique creation based on your input and the rules of the current dimension.</p>
-                        <label for="tags-input">Generation Tags</label>
-                        <input id="tags-input" name="tags" type="text" class="input-field" placeholder="e.g., frog, crossing road, traffic">
-                        <button type="submit" class="btn btn-primary">
-                            <span>Spawn</span>
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        </button>
-                        <div id="loading-spinner" class="htmx-indicator">
-                            <p class="spinner-text">AI is thinking...</p>
+                        <div class="modal-wrapper">
+                            <div class="panel" title="spawn a new latent game with GenAI.">
+                                <form id="generate-form" hx-post="/generate" hx-target="#generation-container" hx-swap="innerHTML" hx-indicator="#loading-spinner" class="form-group">
+                                    <label for="tags-input">Define latent space</label>
+                                    <div class="tags-input-wrapper">
+                                        <div id="tags-container" class="tags-container">
+                                            <!-- Chips will be added here by JavaScript -->
+                                        </div>
+                                        <input id="tags-input-field" type="text" class="input-field" placeholder="e.g., frog, crossing road, traffic">
+                                        <input type="hidden" id="tags-input" name="tags">
+                                    </div>
+                                    <div id="loading-spinner" class="htmx-indicator">
+                                        <p class="spinner-text">AI is thinking...</p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="button-wrapper">
+                                <button type="submit" form="generate-form" class="btn btn-primary">
+                                    <span>Explore</span>
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                </button>
+                            </div>
                         </div>
-                    </form>
-                </div>
 
-                <div class="panel" title="Controls for switching between different creative dimensions.">
-                    <div class="controls">
-                        <div id="dimension-display" class="dimension-display">
-                            <!-- This content will be updated by htmx -->
-                            <h2>Current Dimension: <span class="dimension-name">The 8-Bit Arcade</span></h2>
-                            <p class="dimension-prompt">"You are an expert 8-bit arcade game generator..."</p>
+                        <div class="modal-wrapper">
+                            <div class="panel" title="switching between different creative dimensions.">
+                                <div class="controls">
+                                    <div id="dimension-display" class="dimension-display">
+                                        <!-- This content will be updated by htmx -->
+                                        <h2> <span class="dimension-name">Current dimension </span></h2>
+                                        <p class="dimension-prompt">"headline about dimension.."</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="button-wrapper">
+                                <button hx-post="/switch-dimension" hx-swap="none" class="btn btn-secondary">
+                                    <span>Next Dimension</span>
+                                    <i class="fa-solid fa-shuffle"></i>
+                                </button>
+                            </div>
                         </div>
-                        <button hx-post="/switch-dimension" hx-swap="none" class="btn btn-secondary">
-                            <span>Next Dimension</span>
-                            <i class="fa-solid fa-shuffle"></i>
-                        </button>
+
                     </div>
                 </div>
-
             </div>
 
             <footer class="footer">
-                <p>veetance 2025</p>
-            </footer>
+                        <p>veetance 2025</p>
+                    </footer>
 
         </div>
 

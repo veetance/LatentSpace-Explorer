@@ -1,0 +1,98 @@
+.app-container {
+    display: grid;
+    grid-template-columns: .8fr 2fr;
+    height: 100vh;
+    gap: 0rem;
+    padding: 0.75rem;
+}
+
+.control-panel {
+    background-color: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    padding: 1.25rem;
+    padding-bottom: 0px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ctrl-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.pannels-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.modal-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-wrapper {
+    margin: 0;
+    padding: 0;
+}
+
+.canvas-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: left;
+    padding-bottom: 1rem; /* Add some padding to create space */
+}
+
+.header h1 {
+    font-family: 'Stalinist One', sans-serif;
+    font-size: clamp(1.5rem, 25vw, .9rem);
+    font-weight: 400;
+    margin: 0 0 0.5rem 0;
+}
+
+.header p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+}
+
+.footer {
+    text-align: center;
+    color: var(--footer-text-color);
+    padding-top: 8px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        height: auto;
+    }
+
+    .control-panel {
+        height: auto;
+        overflow-y: visible;
+    }
+}
+
+.scroll-content {
+    padding-right: .5rem;
+}
