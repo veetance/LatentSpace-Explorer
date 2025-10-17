@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latent Space Explorer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Google Fonts for Stalinist One -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap" rel="stylesheet">
+    <!-- Font Awesome from CDN -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <script src="/static/app.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Left Panel: Controls -->
+        <div class="control-panel">
+            
+            <header class="header">
+                <h1>Latent Space Explorer</h1>
+                <p>AI-powered procedural Game generation engine</p>
+            </header>
+
+            <div class="pannels-wrapper">
+
+                <div class="panel" title="Controls for spawning a new creation with the AI.">
+                    <form hx-post="/generate" hx-target="#generation-container" hx-swap="innerHTML" hx-indicator="#loading-spinner" class="form-group">
+                        <p class="description">Provide a set of comma-separated tags to define a concept. The AI will then attempt to spawn a unique creation based on your input and the rules of the current dimension.</p>
+                        <label for="tags-input">Generation Tags</label>
+                        <input id="tags-input" name="tags" type="text" class="input-field" placeholder="e.g., frog, crossing road, traffic">
+                        <button type="submit" class="btn btn-primary">
+                            <span>Spawn</span>
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </button>
+                        <div id="loading-spinner" class="htmx-indicator">
+                            <p class="spinner-text">AI is thinking...</p>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="panel" title="Controls for switching between different creative dimensions.">
+                    <div class="controls">
+                        <div id="dimension-display" class="dimension-display">
+                            <!-- This content will be updated by htmx -->
+                            <h2>Current Dimension: <span class="dimension-name">The 8-Bit Arcade</span></h2>
+                            <p class="dimension-prompt">"You are an expert 8-bit arcade game generator..."</p>
+                        </div>
+                        <button hx-post="/switch-dimension" hx-swap="none" class="btn btn-secondary">
+                            <span>Next Dimension</span>
+                            <i class="fa-solid fa-shuffle"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="footer">
+                <p>veetance 2025</p>
+            </footer>
+
+        </div>
+
+        <!-- Right Panel: Canvas -->
+        <div class="canvas-panel">
+            <main id="generation-container" class="generation-container">
+                <div class="placeholder">
+                    <p>Generated content will appear here.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>

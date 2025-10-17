@@ -1,0 +1,247 @@
+:root {
+    --bg-primary: #161616;
+    --bg-secondary: #262626;
+    --border-color: #444;
+    --text-primary: #f4f4f4;
+    --text-secondary: #999;
+    --accent-color: #007bff;
+    --accent-hover: #0056b3;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+.app-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 100vh;
+    gap: 12px;
+    padding: 12px;
+}
+
+.control-panel {
+    background-color: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    
+}
+
+.pannels-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.canvas-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: left;
+}
+
+.header h1 {
+    font-family: 'Stalinist One', sans-serif;
+    font-size: 2.2rem; /* Adjusted size for the new font */
+    font-weight: 400; /* Stalinist One is a single-weight font */
+    margin: 0 0 8px 0;
+}
+
+.header p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.panel {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dimension-display h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+.dimension-display .dimension-name {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.dimension-display .dimension-prompt {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    border-left: 2px solid var(--accent-color);
+    padding-left: 8px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-group .description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.form-group label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.input-field {
+    width: 100%;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary {
+    background-color: rgba(0, 123, 255, 0.5);
+}
+
+.btn-primary:hover {
+    background-color: rgba(0, 123, 255, 0.7);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn .glow {
+    position: absolute;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+}
+
+.btn .glow.rippling {
+    animation: ripple-effect 0.6s ease-out;
+}
+
+@keyframes ripple-effect {
+    to {
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+    }
+}
+
+.generation-container {
+    flex-grow: 1;
+    width: 100%;
+    background-color: #000;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.generation-container .placeholder {
+    text-align: center;
+    color: #555;
+}
+
+.generation-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-request .htmx-indicator {
+    display: block;
+    margin-top: 12px;
+}
+
+.spinner-text {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    color: #555;
+}
